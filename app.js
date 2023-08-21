@@ -9,13 +9,12 @@ function onLoginSubmit(event) {
   event.preventDefault(); // 기본 동작 중지
   loginForm.classList.add(HIDDEN_CLASSNAME); // loginForm hidden추가
 
-  const username = loginInput.value;
+  const typedUsername = loginInput.value;
 
-  localStorage.setItem(USERNAME_KEY, username); // 왼쪽 이름, 오른쪽 변수
+  localStorage.setItem(USERNAME_KEY, typedUsername); // 왼쪽 이름, 오른쪽 변수
 
   greeting.innerText = `Hello ${username}`;
-  greeting.classList.remove(HIDDEN_CLASSNAME);
-  console.log(username);
+  paintGreetings(typedUsername);
 }
 
 function paintGreetings(username) {
