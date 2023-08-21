@@ -9,7 +9,10 @@ function onLoginSubmit(event) {
   loginForm.classList.add(HIDDEN_CLASSNAME); // loginForm hidden추가
 
   const username = loginInput.value;
-  greeting.innerText = "Hello " + username;
+
+  localStorage.setItem("username", username); // 왼쪽 이름, 오른쪽 변수
+
+  greeting.innerText = `Hello ${username}`;
   greeting.classList.remove(HIDDEN_CLASSNAME);
   console.log(username);
 }
