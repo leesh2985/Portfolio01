@@ -19,4 +19,6 @@ const bgImage = document.createElement("img");
 
 bgImage.src = `img/${chosenImage}`;
 
+bgImage.classList.add("bg-image"); // 클래스 이름 추가
+
 document.body.appendChild(bgImage);
