@@ -3,6 +3,7 @@ const toDoInput = toDoForm.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 
 const TODO_KEY = "todos";
+const MAX_COUNT = 5; // 최대 할 일 개수
 
 let toDos = []; // 빈array로 생성
 
@@ -119,6 +120,12 @@ function handleToDoSubmit(event) {
   event.preventDefault();
   const newTodo = toDoInput.value; // 인풋의 현제 벨류를 새로운 변수에 복사
   toDoInput.value = ""; // 입력 후 다시 비워주기
+
+  // 최대 할 일 개수 체크
+  if (toDos.length >= MAX_COUNT) {
+    alert(`최대 ${MAX_COUNT}개까지만 추가할 수 있습니다.`);
+    return;
+  }
   const newTodoObj = {
     text: newTodo,
     id: Date.now(),
