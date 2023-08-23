@@ -10,8 +10,12 @@ function onGeoOk(position) {
     .then((data) => {
       const weather = document.querySelector("#weather span:first-child");
       const city = document.querySelector("#weather span:last-child");
-      city.innerText = data.name;
-      weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
+
+      weather.innerText = `${data.weather[0].main} / ${data.main.temp}°C`;
+      city.innerHTML = `<i class="fas fa-earth-asia"></i> ${data.name}`; // 태그와 함께 입력하여 내용을 직접 설정
+
+      weather.classList.add("weather");
+      city.classList.add("city");
     });
 } // 위치확인
 function onGeoError() {
