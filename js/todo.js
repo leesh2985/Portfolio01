@@ -19,9 +19,10 @@ function deleteToDo(event) {
 function paintToDo(newTodo) {
   // 화면에 리스트 만들기
   const li = document.createElement("li");
+  li.id = newTodo.id; // id추가
 
   const span = document.createElement("span");
-  span.innerText = newTodo;
+  span.innerText = newTodo.text;
 
   const button = document.createElement("button");
   button.innerText = "❌";
@@ -37,8 +38,13 @@ function handleToDoSubmit(event) {
   event.preventDefault();
   const newTodo = toDoInput.value; // 인풋의 현제 벨류를 새로운 변수에 복사
   toDoInput.value = ""; // 입력 후 다시 비워주기
-  toDos.push(newTodo); // newToDo를 toDos배열에 push
-  paintToDo(newTodo); // 화면에 보여줌
+  const newTodoObj = {
+    text: newTodo,
+    id: Date.now(),
+  };
+
+  toDos.push(newTodoObj); // newToDo를 toDos배열에 push
+  paintToDo(newTodoObj); // 화면에 보여줌
   saveToDos(); // localStorage 저장
 }
 
