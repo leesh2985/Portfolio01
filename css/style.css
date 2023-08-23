@@ -1,3 +1,130 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+body {
+  text-align: center;
+  color: #fff;
+  padding: 1%;
+}
+
+h5 {
+  font-weight: 100;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+input {
+  border: none;
+  background: transparent;
+  font-size: 35px;
+  margin: 3px;
+  text-align: center;
+  color: #ecf0f1;
+  border-bottom: 2px solid #ecf0f1;
+}
+
+input:focus {
+  outline: none;
+}
+input::placeholder {
+  opacity: 0.5;
+  color: #fff;
+}
+
+ul {
+  margin: 0 auto;
+  width: 420px;
+}
+
+li {
+  font-size: 25px;
+  text-align: left;
+  color: #ecf0f1;
+}
+
+button {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* object-fit: cover; */
+  z-index: -1;
+  filter: brightness(60%);
+}
+
 .hidden {
   display: none;
+}
+
+#clock {
+  font-size: 112px;
+}
+
+/* greeting */
+#greeting {
+  font-size: 40px;
+}
+
+/* quotes */
+#quote {
+  margin-top: 20px;
+}
+
+.character {
+  padding-left: 5px;
+}
+
+/* weather */
+#weather {
+  margin-top: 12%;
+}
+.city {
+  padding-left: 5px;
+}
+
+/* todo-form */
+#todo-form {
+  margin-top: 20px;
+}
+
+/* 리스트 */
+.Lists {
+  display: flex;
+  padding-top: 10px;
+}
+
+.spanText {
+  flex: 1;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
+}
+
+/* .done-btn {
+} */
+.emend-btn {
+  font-size: 16px;
+  padding-right: 5px;
+  color: gray;
+}
+
+.delete-btn {
+  font-size: 15px;
 }
