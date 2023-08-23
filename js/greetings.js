@@ -13,7 +13,6 @@ function onLoginSubmit(event) {
 
   localStorage.setItem(USERNAME_KEY, typedUsername); // 왼쪽 이름, 오른쪽 변수
 
-  greeting.innerText = `Hello ${username}`;
   paintGreetings(typedUsername);
 }
 
