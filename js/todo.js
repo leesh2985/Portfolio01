@@ -14,6 +14,9 @@ function deleteToDo(event) {
   const li = event.target.parentElement; // 지울 타켓
   // console.log(event.target.parentElement);
   li.remove();
+  // console.log(li.id);
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+  saveToDos();
 }
 
 function paintToDo(newTodo) {
