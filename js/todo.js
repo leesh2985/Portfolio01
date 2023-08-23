@@ -20,22 +20,99 @@ function deleteToDo(event) {
   saveToDos();
 }
 
+function toggleDone(event) {
+  const li = event.target.parentElement; // 클릭한 리스트
+
+  // toDos 배열에서 해당 ID의 할 일 항목 찾기
+  const todo = toDos.find((item) => item.id === parseInt(li.id));
+
+  if (todo) {
+    // 해당 ID의 할 일 항목이 존재하면 상태 변경
+    todo.done = !todo.done; // done 상태를 토글
+
+    // done 상태에 따라 표시할 내용 설정
+    if (todo.done) {
+      event.target.innerText = "❗";
+      li.querySelector("span").style.textDecoration = "line-through"; // 줄긋기
+    } else {
+      event.target.innerText = "❔"; // ❔로 변경
+      li.querySelector("span").style.textDecoration = "none"; // 줄긋기 제거
+    }
+
+    saveToDos(); // 변경된 상태를 저장
+  }
+}
+
+function toggleEmend(event) {
+  const li = event.target.parentElement; // 클릭한 리스트
+
+  const spanText = li.querySelector(".spanText");
+  const emendBtn = li.querySelector(".emend-btn");
+
+  spanText.contentEditable = true; // 편집 가능한 상태로 변경
+  spanText.focus(); // 포커스 설정
+  emendBtn.innerText = "🔧"; // 수정 완료 표시
+
+  // 수정 완료 버튼 클릭 시
+  emendBtn.removeEventListener("click", toggleEmend);
+  emendBtn.addEventListener("click", toggleEmendDone);
+}
+
+function toggleEmendDone(event) {
+  const li = event.target.parentElement; // 클릭한 리스트
+
+  const spanText = li.querySelector(".spanText");
+  const emendBtn = li.querySelector(".emend-btn");
+
+  spanText.contentEditable = false; // 편집 불가능한 상태로 변경
+  emendBtn.innerText = "🔧"; // 수정 버튼으로 변경
+
+  const todo = toDos.find((item) => item.id === parseInt(li.id));
+  if (todo) {
+    todo.text = spanText.innerText; // 수정된 내용 저장
+    saveToDos(); // 변경된 상태 저장
+  }
+
+  // 수정 버튼 클릭 시
+  emendBtn.removeEventListener("click", toggleEmendDone);
+  emendBtn.addEventListener("click", toggleEmend);
+}
+
 function paintToDo(newTodo) {
   // 화면에 리스트 만들기
-  const li = document.createElement("li");
-  li.id = newTodo.id; // id추가
+  const List = document.createElement("li");
+  List.classList.add("Lists");
+  List.id = newTodo.id; // id추가
 
-  const span = document.createElement("span");
-  span.innerText = newTodo.text;
+  const spanText = document.createElement("span");
+  spanText.classList.add("spanText");
+  spanText.innerText = newTodo.text;
 
-  const button = document.createElement("button");
-  button.innerText = "❌";
-  button.addEventListener("click", deleteToDo);
+  const doneBtn = document.createElement("button");
+  doneBtn.innerText = newTodo.done ? "❗" : "❔"; // done 상태에 따라 표시 내용 설정
+  doneBtn.classList.add("done-btn");
+  doneBtn.addEventListener("click", toggleDone);
 
-  li.appendChild(span); // li에 span연결
-  li.appendChild(button);
+  const emendBtn = document.createElement("button");
+  emendBtn.classList.add("emend-btn");
+  emendBtn.innerText = "🔧";
+  emendBtn.addEventListener("click", toggleEmend);
 
-  toDoList.appendChild(li);
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.innerText = "❌";
+  deleteBtn.addEventListener("click", deleteToDo);
+
+  List.appendChild(doneBtn);
+  List.appendChild(spanText); // li에 span연결
+  List.appendChild(emendBtn);
+  List.appendChild(deleteBtn);
+
+  if (newTodo.done) {
+    spanText.style.textDecoration = "line-through"; // 새로고침해도 유지
+  }
+
+  toDoList.appendChild(List);
 }
 
 function handleToDoSubmit(event) {
