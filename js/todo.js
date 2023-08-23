@@ -15,7 +15,8 @@ function deleteToDo(event) {
   // console.log(event.target.parentElement);
   li.remove();
   // console.log(li.id);
-  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id)); // parseInt -> 문자를 숫자로
+  // toDo.id와 클릭한 할 일 항목의 ID(li.id)가 다른 경우만 유지
   saveToDos();
 }
 
