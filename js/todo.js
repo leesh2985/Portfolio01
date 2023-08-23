@@ -4,7 +4,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODO_KEY = "todos";
 
-const toDos = []; // array로 생성
+let toDos = []; // 빈array로 생성
 
 function saveToDos() {
   localStorage.setItem(TODO_KEY, JSON.stringify(toDos)); // JSON.stringify 객체/배열 -> string
@@ -50,5 +50,7 @@ const savedToDos = localStorage.getItem(TODO_KEY);
 if (savedToDos !== null) {
   const parsedToDos = JSON.parse(savedToDos); // JSON.parse 문자열 -> 객체/배열로 변환
   // console.log(parsedToDos);
+
+  toDos = parsedToDos; // 이전에 있는 기록에서 추가적으로 생기게 하기
   parsedToDos.forEach(paintToDo);
 }
