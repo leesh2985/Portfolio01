@@ -102,7 +102,10 @@ button {
 
 /* greeting */
 #greeting {
+  display: flex;
   font-size: 40px;
+  align-items: center;
+  justify-content: center;
 }
 
 /* quotes */

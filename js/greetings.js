@@ -33,7 +33,28 @@ function paintGreetings(username) {
   } else {
     timeGreeting = "Good night";
   }
+
   greeting.innerText = `${timeGreeting} ${username}`;
+
+  // 재설정 버튼
+  const resetBtn = document.createElement("button");
+  resetBtn.classList.add("reset-btn");
+  resetBtn.innerText = "❌";
+  resetBtn.addEventListener("click", resetForm); // 버튼 클릭 시 resetForm 함수 호출
+
+  greeting.appendChild(resetBtn);
+}
+
+function resetForm() {
+  loginForm.classList.remove(HIDDEN_CLASSNAME); // login-form의 hidden 클래스 제거
+  showToDoForm.classList.add(HIDDEN_CLASSNAME); // todo-form의 hidden 클래스 추가
+  greeting.classList.add(HIDDEN_CLASSNAME); // greeting의 hidden 클래스 추가
+
+  // greeting의 텍스트 내용도 숨김 처리
+  greeting.innerText = "";
+
+  localStorage.removeItem(USERNAME_KEY); // localStorage에서 저장된 username 제거
+  loginInput.value = ""; // login 입력 필드 비우기
 }
 
 function paintToDoList() {
